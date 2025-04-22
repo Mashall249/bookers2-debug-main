@@ -28,4 +28,8 @@ class Book < ApplicationRecord
       Book.where("name LIKE ?", "%" + content + "%")
     end
   end
+
+  scope :latest, -> {order(created_at: :desc)}
+  scope :old, -> {order(created_at: :asc)}
+  scope :star_count, -> {order(created_at: :desc)}
 end
