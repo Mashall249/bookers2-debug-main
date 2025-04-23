@@ -26,6 +26,7 @@
           <%= render "favorites/btn", book: book %>
         </td>
         <td><%= pluralize(book.book_comments.count, 'comment') %></td>
+        <td>閲覧数：<%= book.view_count %></td>
       </tr>
     <% end %>
   </tbody>
