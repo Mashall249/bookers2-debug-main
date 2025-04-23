@@ -10,7 +10,7 @@
       <h2>Books</h2>
       <%= render 'books/index',books: @books %>
 
-      <h3>投稿数の前日比・先週比</h3>
+      <h4>投稿数の前日比・先週比</h4>
 
       <div class = "table_container">
         <table class="table table-bordered">
@@ -64,7 +64,7 @@
         </table>
       </div>
 
-      <h3>7日分の投稿数</h3>
+      <h4>7日分の投稿数</h4>
         <table class="tables table-bordered">
           <tbody>
             <tr>
@@ -122,6 +122,8 @@
                 });
               });
           </script>
+
+      <%= render "posts_on_date_form", user: @user %>
     </div>
   </div>
 </div>
