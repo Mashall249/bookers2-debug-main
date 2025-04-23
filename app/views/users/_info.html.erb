@@ -22,12 +22,17 @@
 
 <% if user.email != "guest@example.com" %>
   <div class = 'row'>
-    <% if current_user != user %>
-    <td><%= render "relationships/btn", user:user, options: { class: ""} %></td>
-    <% else %>
-      <%= link_to edit_user_path(user), class: "btn btn-outline-secondary btn-block" do %>
-        <i class="fas fa-user-cog"></i>
+    <tr>
+      <% if current_user != user %>
+      <td><%= render "relationships/btn", user:user, options: { class: ""} %></td>
+      <% else %>
+        <%= link_to edit_user_path(user), class: "btn btn-outline-secondary btn-block" do %>
+          <i class="fas fa-user-cog"></i>
+        <% end %>
       <% end %>
-    <% end %>
+      <% if current_user !=  user && current_user.following?(user) && user.following?(current_user) %>
+        <%= link_to 'Start chat', chat_path(user.id),class: "ml-3" %>
+      <% end %>
+    </tr>
   </div>
 <% end %>
