@@ -6,7 +6,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @books = @user.books
     @book = Book.new
-    
+
     @today_book = @books.created_today
     @yesterday_book = @books.created_yesterday
     @this_week_book = @books.created_this_week
@@ -29,6 +29,13 @@ class UsersController < ApplicationController
     else
       render "edit"
     end
+  end
+
+  def posts_on_date
+    user = User.includes(:books).find(params[:user_id])
+    date = Date.parse(params[:created_at])
+    @books = user.books.where(created_at: date.all_day)
+    render :posts_on_date_form
   end
 
   private
